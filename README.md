@@ -23,7 +23,7 @@
 </bean>
 ````
 
-Импорт в проект [conf/BeansConfiguration.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/BeansConfiguration.java):
+Для импортирования бинов, определенных в beans.xml, нужно создать класс [conf/BeansConfiguration.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/BeansConfiguration.java):
 
 ````java
 @Configuration
