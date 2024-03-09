@@ -115,7 +115,7 @@ $ mvn compile exec:java -Dexec.mainClass=ru.perm.v.springconfig.SpringConfigAppl
 <a id="other"></a>
 ### Примечания:
 
-Удален WARNING "172 [main] WARN org.springframework.beans.factory.xml.ResourceEntityResolver - DTD/XSD XML entity http://www.springframework.org/schema/beans/spring-beans.xsd not found, falling back to remote https resolution". Исправлен заголовок файла beans.xml.
+WARNING "172 [main] WARN org.springframework.beans.factory.xml.ResourceEntityResolver - DTD/XSD XML entity http://www.springframework.org/schema/beans/spring-beans.xsd not found, falling back to remote https resolution". Исправлен заголовок файла beans.xml.
 
 ````shell
 <?xml version="1.0" encoding="UTF-8"?>
@@ -125,7 +125,7 @@ $ mvn compile exec:java -Dexec.mainClass=ru.perm.v.springconfig.SpringConfigAppl
 Исправление ошибки: 
 An exception occured while executing the Java class. Line 15 in XML document from class path resource [beans.xml] is invalid: Attribute "xmlns" must be declared for element type "beans".
 
-Удален заголовок 
+Восстановить заголовок 
 ````xml
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 ````
