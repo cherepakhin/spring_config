@@ -125,5 +125,9 @@ $ mvn compile exec:java -Dexec.mainClass=ru.perm.v.springconfig.SpringConfigAppl
 Исправление ошибки: 
 An exception occured while executing the Java class. Line 15 in XML document from class path resource [beans.xml] is invalid: Attribute "xmlns" must be declared for element type "beans".
 
-Удален заголовок "<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">"
+Удален заголовок 
+````xml
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+````
+
 
