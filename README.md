@@ -56,7 +56,7 @@ public class SpringConfigApplication {
 
 
 <a id="configuration"></a>
-### С помощью @Configuration и @Bean в [https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/ConfigFromJava.java). 
+### С помощью @Configuration и @Bean в [conf/ConfigFromJava.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/ConfigFromJava.java). 
 
 ````java
 @Configuration
