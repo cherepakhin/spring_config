@@ -10,7 +10,7 @@
 <a id="xml_file"></a>
 ### 1. С помощью xml-файла.
 
-Определение beans в [resources/beans.xml](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/resources/beans.xml):
+Определение beans в [resources/beans.xml](https://github.com/cherepakhin/spring_config/blob/main/src/main/resources/beans.xml):
 
 ````xml
 
