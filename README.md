@@ -3,26 +3,27 @@
 
 1. [С помощью xml-файла resources/beans.xml](#xml_file)
 2. [С помощью @Configuration и @Bean в conf/ConfigFromJava](#configuration)
+3. [Запуск проекта](#run_project)
 
 [Примечания](#other)
 
 <a id="xml_file"></a>
-### С помощью xml-файла [resources/beans.xml](https://github.com/cherepakhin/camel_spring/resources/beans.xml).
+### С помощью xml-файла.
 
-Определение [resources/beans.xml](https://github.com/cherepakhin/camel_spring/resources/beans.xml):
+Определение bens в [resources/beans.xml](https://github.com/cherepakhin/spring_config/resources/beans.xml):
 
 ````xml
 
 <bean id="russianGreeter" class="ru.perm.v.springconfig.greeters.RussianGreeter"/>
-<bean id="danishGreeter" class="ru.perm.v.camelinaction.ch2.greeters.DanishGreeter"/>
+<bean id="germanyGreeter" class="ru.perm.v.springconfig.greeters.GermanyGreeter"/>
 <bean id="englishGreeter" class="ru.perm.v.springconfig.greeters.EnglishGreeter"/>
 
-<bean id="greetMain" class="ru.perm.v.camelinaction.ch2.GreetMainApplication">
+<bean id="selectedGreeterService" class="ru.perm.v.springconfig.service.GreeterService">
 <property name="greeter" ref="russianGreeter"/>
 </bean>
 ````
 
-Импорт в проект:
+Импорт в проект [conf/BeansConfiguration.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/BeansConfiguration.java):
 
 ````java
 @Configuration
@@ -31,48 +32,31 @@ public class BeansConfiguration {
 }
 ````
 
-Или можно так подгрузить и получить bean :
+Или можно так подгрузить и получить bean (закомментировано "For demo test:"):
 
 ````java
 @SpringBootApplication
-public class GreetMainApplication {
+public class SpringConfigApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GreetMainApplication.class, args);
-        ApplicationContext context =
-                new ClassPathXmlApplicationContext("beans.xml");
+        SpringApplication.run(SpringConfigApplication.class, args);
 
-        GreeterService greeterService =
-                (GreeterService) context.getBean("selectedGreeterService");
-        System.out.println(greeterService.getHello()); // Hello, vasi!
+// For demo test:
+//        ApplicationContext context =
+//                new ClassPathXmlApplicationContext("beans.xml");
+//        GreeterService greeterService =
+//                (GreeterService) context.getBean("selectedGreeterService");
+//        System.out.println(greeterService.getHello()); // Hello, vasi!
+
     }
 }
 ````
 
-или как обычно:
+Использование в [ru.perm.v.springconfig.rest.BeansConfigurationRest.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/rest/BeansConfigurationRest.java):
 
-````java
-@RestController
-@RequestMapping("/greet")
-public class GreeterRest {
-
-    /**
-     * inject from beans.xml property <property name="greeter" ref="russianGreeter"/>
-     */
-    @Autowired
-    GreeterService selectedGreeterService;
-````
-
-Запуск:
-
-````shell
-$ mvn compile exec:java -Dexec.mainClass=ru.perm.v.camelinaction.ch2.GreetMainApplication
-````
 
 <a id="configuration"></a>
-### С помощью @Configuration и @Bean в [conf/ConfigFromJava](https://github.com/cherepakhin/camel_spring/blob/main/src/main/java/ru/perm/v/camelinaction/ch2/conf/ConfigFromJava.java). 
-
-С помощью @Configuration и @Bean. Показано в [conf/ConfigFromJava](https://github.com/cherepakhin/camel_spring/blob/main/src/main/java/ru/perm/v/camelinaction/ch2/conf/ConfigFromJava.java):
+### С помощью @Configuration и @Bean в [https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/ConfigFromJava.java). 
 
 ````java
 @Configuration
@@ -89,20 +73,17 @@ public class ConfigFromJava {
 }
 ````
 
-[resources/beans.xml](https://github.com/cherepakhin/camel_spring/resources/beans.xml)
-Использование в [ru.perm.v.camelinaction.ch2.ConfigFromJavaRest.java](https://github.com/cherepakhin/camel_spring/blob/main/src/main/java/ru/perm/v/camelinaction/ch2/ConfigFromJavaRest.java) как обычно:
+Использование в [ru.perm.v.springconfig.rest.ConfigFromJavaRest.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/rest/ConfigFromJavaRest.java):
 
 ````java
 @RestController
 @RequestMapping("/simple_conf")
 public class ConfigFromJavaRest {
-@Autowired
-String beanOneFromConfigFromJava;
 
     @Autowired
     String beanTwoFromConfigFromJava;
-
-    ....
+    @Autowired
+    String beanTwoConfigFromJava;
 ````
 
 ### Unit tests
@@ -118,10 +99,17 @@ $ mvn test
 $ mvn package
 ````
 
-Запуск:
+<a id="run_project"></a>
+### Запуск проекта:
 
 ````shell
-java -jar target/camel-spring-0.0.1.jar
+java -jar target/springconfig-0.0.1.jar
+````
+
+или:
+
+````shell
+$ mvn compile exec:java -Dexec.mainClass=ru.perm.v.springconfig.SpringConfigApplication
 ````
 
 <a id="other"></a>
@@ -139,19 +127,3 @@ An exception occured while executing the Java class. Line 15 in XML document fro
 
 Удален заголовок "<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">"
 
-Демо простой конфигурации Spring conf.ru.perm.v.springconfig.ConfigFromJava:
-
-````java
-@Configuration
-public class ConfigFromJava {
-    @Bean
-    public String beanOneConfigFromJava() {
-        return "beanOne";
-    }
-
-    @Bean
-    public String beanTwoConfigFromJava() {
-        return "beanTwo";
-    }
-}
-````
