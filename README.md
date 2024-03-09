@@ -8,7 +8,7 @@
 [Примечания](#other)
 
 <a id="xml_file"></a>
-### С помощью xml-файла.
+### 1. С помощью xml-файла.
 
 Определение bens в [resources/beans.xml](https://github.com/cherepakhin/spring_config/resources/beans.xml):
 
@@ -56,7 +56,7 @@ public class SpringConfigApplication {
 
 
 <a id="configuration"></a>
-### С помощью @Configuration и @Bean в [conf/ConfigFromJava.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/ConfigFromJava.java). 
+### 2. С помощью @Configuration и @Bean в [conf/ConfigFromJava.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/ConfigFromJava.java). 
 
 ````java
 @Configuration
@@ -100,7 +100,7 @@ $ mvn package
 ````
 
 <a id="run_project"></a>
-### Запуск проекта:
+### 3. Запуск проекта:
 
 ````shell
 java -jar target/springconfig-0.0.1.jar
