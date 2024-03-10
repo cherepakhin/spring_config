@@ -54,6 +54,23 @@ public class SpringConfigApplication {
 
 Использование в [ru.perm.v.springconfig.rest.BeansConfigurationRest.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/rest/BeansConfigurationRest.java):
 
+````java
+public class BeansConfigurationRest {
+
+    private static final Logger logger = Logger.getLogger(BeansConfigurationRest.class);
+    /**
+     * inject from beans.xml property <property name="greeter" ref="russianGreeter"/>
+     */
+    @Autowired
+    GreeterService selectedGreeterService;
+    @Autowired
+    GermanyGreeter germanyGreeter;
+    @Autowired
+    EnglishGreeter englishGreeter;
+    @Autowired
+    RussianGreeter russianGreeter;
+
+````
 
 <a id="configuration"></a>
 ### 2. С помощью @Configuration и @Bean в [conf/ConfigFromJava.java](https://github.com/cherepakhin/spring_config/blob/main/src/main/java/ru/perm/v/springconfig/conf/ConfigFromJava.java). 
